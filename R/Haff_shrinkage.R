@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-Haff_shrinkage <- function(x){
+Haff_shrinkage <- function(x, ...){
   cov <- cov(x)
   invCov <- solve(cov)
   n <- nrow(x)
