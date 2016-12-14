@@ -5,6 +5,8 @@
 #' @return
 #' @export
 #'
+#' @importFrom lazyeval lazy_dots
+#'
 #' @examples
 Haff_shrinkage <- function(x, ...){
   cov <- cov(x)

@@ -4,7 +4,7 @@
 \alias{Haff_shrinkage}
 \title{Title}
 \usage{
-Haff_shrinkage(x)
+Haff_shrinkage(x, ...)
 }
 \arguments{
 \item{x}{}
