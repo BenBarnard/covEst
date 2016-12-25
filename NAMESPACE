@@ -2,3 +2,4 @@
 
 export(Haff_shrinkage)
 importFrom(lazyeval,lazy_dots)
+importFrom(stats,cov)
