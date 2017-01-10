@@ -1,11 +1,8 @@
 ## CovEst
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/covEst)](https://cran.r-project.org/package=covEst)
-
 [![Travis-CI Build Status](https://travis-ci.org/BenBarnard/CovEst.svg?branch=master)](https://travis-ci.org/BenBarnard/CovEst)
-
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/BenBarnard/CovEst?branch=master&svg=true)](https://ci.appveyor.com/project/BenBarnard/CovEst)
-
 [![Coverage Status](https://img.shields.io/codecov/c/github/BenBarnard/CovEst/master.svg)](https://codecov.io/github/BenBarnard/CovEst?branch=master)
 
 ```{r, echo = FALSE}
