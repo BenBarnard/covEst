@@ -1,2 +1,0 @@
-# covEst
-Covariance Matrix Estimators
