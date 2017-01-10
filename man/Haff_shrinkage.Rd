@@ -2,14 +2,20 @@
 % Please edit documentation in R/Haff_shrinkage.R
 \name{Haff_shrinkage}
 \alias{Haff_shrinkage}
-\title{Title}
+\title{Haff Shrinkage Covariance Estimator}
 \usage{
-Haff_shrinkage(x)
+Haff_shrinkage(x, ...)
 }
 \arguments{
-\item{x}{}
+\item{x}{data matrix}
+}
+\value{
+Haff shrinkage covariance estimator
 }
 \description{
-Title
+Haff Shrinkage Covariance Estimator
+}
+\examples{
+Haff_shrinkage(as.matrix(iris[-5]))
 }
 
