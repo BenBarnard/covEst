@@ -8,6 +8,8 @@ Haff_shrinkage(x, ...)
 }
 \arguments{
 \item{x}{data matrix}
+
+\item{...}{other options}
 }
 \value{
 Haff shrinkage covariance estimator
