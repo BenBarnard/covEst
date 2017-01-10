@@ -8,7 +8,6 @@
 #'
 #' @keywords internal
 #'
-#' @examples tr(diag(rep(1, 5)))
 tr <- function(x){
   if(!(nrow(x) == ncol(x))){
     stop("Not a square matrix")
