@@ -1,6 +1,7 @@
 #' Haff Shrinkage Covariance Estimator
 #'
 #' @param x data matrix
+#' @param ... other options
 #'
 #' @return Haff shrinkage covariance estimator
 #' @export
