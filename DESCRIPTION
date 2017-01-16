@@ -1,8 +1,8 @@
 Package: covEst
-Title: What the Package Does (one line, title case)
+Title: Estimators for Covariance Matrices
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c("aut", "cre")))
+Description: Covariance estimation functions.
 Depends:
     lazyeval
 License: GPL-2
