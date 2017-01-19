@@ -32,5 +32,5 @@ This is a basic example which shows you how to solve a common problem:
 library(tidyverse)
 library(covEst)
 
-data <- iris %>% select(-Species) %>% as.matrix %>% Haff_shrinkage
+iris %>% select(-Species) %>% as.matrix %>% Haff_shrinkage
 ```
