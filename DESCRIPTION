@@ -3,7 +3,7 @@ Title: Estimators for Covariance Matrices
 Version: 0.0.0.9000
 Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c("aut", "cre")))
 Description: Covariance estimation functions.
-Depends:
+Imports:
     lazyeval
 License: GPL-2
 Encoding: UTF-8
