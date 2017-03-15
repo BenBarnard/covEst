@@ -17,4 +17,3 @@ tu(S, n, p)
 Function to be optimized for Haff Shrinkage
 }
 \keyword{internal}
-

@@ -20,4 +20,3 @@ Haff Shrinkage Covariance Estimator
 \examples{
 Haff_shrinkage(as.matrix(iris[-5]))
 }
-
