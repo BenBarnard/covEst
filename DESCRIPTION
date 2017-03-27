@@ -2,7 +2,7 @@ Package: covEst
 Title: Estimators for Covariance Matrices
 Version: 0.0.0.9000
 Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c("aut", "cre")),
-            person("Odom", "Gabriel", role = c("aut")),
+            person("Gabriel", "Odom", role = c("aut")),
              person("Dean", "Young", role = c("aut")))
 Description: Covariance estimation functions.
 Imports:
