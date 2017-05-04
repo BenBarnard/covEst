@@ -1,9 +1,9 @@
-#' Haff Shrinkage Covariance Estimator
+#' Haff Shrinkage Precision Estimator
 #'
 #' @param x data matrix
 #' @param ... other options
 #'
-#' @return Haff shrinkage covariance estimator
+#' @return Haff shrinkage precision estimator
 #' @export
 #'
 #' @importFrom lazyeval lazy_dots
@@ -11,7 +11,7 @@
 #'
 #' @examples Haff_shrinkage(as.matrix(iris[-5]))
 Haff_shrinkage <- function(x, ...){
-  cov <- cov(x)
+  cov <- stats::cov(x)
   invCov <- solve(cov)
   n <- nrow(x)
   p <- ncol(x)

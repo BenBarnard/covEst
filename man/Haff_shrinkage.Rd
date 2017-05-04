@@ -2,7 +2,7 @@
 % Please edit documentation in R/Haff_shrinkage.R
 \name{Haff_shrinkage}
 \alias{Haff_shrinkage}
-\title{Haff Shrinkage Covariance Estimator}
+\title{Haff Shrinkage Precision Estimator}
 \usage{
 Haff_shrinkage(x, ...)
 }
@@ -12,10 +12,10 @@ Haff_shrinkage(x, ...)
 \item{...}{other options}
 }
 \value{
-Haff shrinkage covariance estimator
+Haff shrinkage precision estimator
 }
 \description{
-Haff Shrinkage Covariance Estimator
+Haff Shrinkage Precision Estimator
 }
 \examples{
 Haff_shrinkage(as.matrix(iris[-5]))
