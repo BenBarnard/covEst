@@ -4,12 +4,17 @@
 \alias{pooled_cov}
 \title{Pooled Covariance}
 \usage{
-pooled_cov(x, ...)
+pooled_cov(x, ..., covEst = stats::cov)
 }
 \arguments{
 \item{x}{data}
 
-\item{...}{other options}
+\item{...}{other options passed to estimation method}
+
+\item{covEst}{covariance matrix estimation method}
+}
+\value{
+pooled covariance class matrix
 }
 \description{
 Pooled Covariance
