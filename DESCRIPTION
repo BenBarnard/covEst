@@ -6,6 +6,7 @@ Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c
              person("Dean", "Young", role = c("aut")))
 Description: Covariance estimation functions.
 Imports:
+    dplyr,
     lazyeval,
     MASS
 License: GPL-2
