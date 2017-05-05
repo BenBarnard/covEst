@@ -2,13 +2,23 @@
 % Please edit documentation in R/cov.R
 \name{cov}
 \alias{cov}
-\title{Title}
+\title{Covariance Matrix}
 \usage{
-cov(x, ...)
+cov(x, ..., covEst = stats::cov)
 }
 \arguments{
-\item{...}{}
+\item{x}{data}
+
+\item{...}{other options passed to covarince estimation method}
+
+\item{covEst}{covariance estimation method}
+}
+\value{
+list of covariance class matries
 }
 \description{
-Title
+Covariance Matrix
+}
+\examples{
+cov(iris[,1:4])
 }
