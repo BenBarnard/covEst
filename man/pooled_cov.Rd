@@ -2,22 +2,31 @@
 % Please edit documentation in R/pooled_cov.R
 \name{pooled_cov}
 \alias{pooled_cov}
-\title{Pooled Covariance}
+\title{Pooled Covariance Estimator}
 \usage{
 pooled_cov(x, ..., covEst = stats::cov)
 }
 \arguments{
-\item{x}{data}
+\item{x}{data as a \code{data.frame}, \code{grouped_df}, or \code{resample}
+objects}
 
 \item{...}{other options passed to estimation method}
 
-\item{covEst}{covariance matrix estimation method}
+\item{covEst}{covariance or precision matrix estimation method}
 }
 \value{
-pooled covariance class matrix
+The pooled covariance or precision matrix with class \code{covariance}
+   and total degrees of freedom attribute \code{df} as a formula.
 }
 \description{
-Pooled Covariance
+Pooled Covariance Estimator
+}
+\details{
+This function returns the weighted average of a collection of group-
+   or class-specific covariance or precision matrices. The weights are
+   proportional to the degrees of freedom of each matrix.  This matrix has
+   the total degrees of freedom stored within the \code{df} attribute as a
+   formula for simple evaluation by the \code{\link{degreesFreedom}} function
 }
 \examples{
 pooled_cov(iris, group = Species)
