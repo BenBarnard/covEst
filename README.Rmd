@@ -11,9 +11,14 @@
 
 In developing `covEst` we found it useful to have it play nice with the `tidyverse` suite of packages. At this point we have not thought of all the uses and combinations with these packages, so if you think of something not currently implemented please file a minimal reproducible example on GitHub.
 
+Currently, we have written the Haff shrinkage estimator [1979](https://projecteuclid.org/euclid.aos/1176344845), but we are open to adding other covariance and precision matrix estimating functions. Note that our `cov()` function can return either covariance or precision matrices, depending on the function supplied to the `covEst` argument. Please file an enhancement request on GitHub, and please include the following details in the request:
+
+- Link to a published paper (or even a white paper) wherein the estimator is defined in simplest terms (matrix notation preferred)
+- A quick example of how the estimator is useful (we will include this information in the function `help` file(s))
+
 ## Installation
 
-You can install the latest development version from github with
+You can install the latest development version from GitHub with
 
 ```{r}
 if (packageVersion("devtools") < 1.6) {
@@ -32,5 +37,14 @@ This is a basic example which shows you how to solve a common problem:
 library(tidyverse)
 library(covEst)
 
+# Total Precision
 iris %>% select(-Species) %>% as.matrix %>% Haff_shrinkage
+
+# Group Precision matrix estimates using our cov() function with the unbiased
+#   estimator
+cov(iris, group = "Species") %>% lapply(solve)
+
+# Group Precision matrix estimates using our cov() function with the Haff
+#   Shrinkage Estimator
+cov(iris, group = "Species", covEst = Haff_shrinkage)
 ```

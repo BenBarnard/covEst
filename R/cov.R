@@ -4,28 +4,31 @@
 #'    can be a \code{data.frame}, \code{grouped_df}, \code{resample}, or
 #'    \code{matrix}.
 #' @param ... other options passed to covarince estimation method
-#' @param covEst covariance estimation method, as a function. Defaults to
-#'    \code{stats::cov}.
+#' @param covEst covariance or precision matrix estimation method, as a function.
+#'    Defaults to \code{stats::cov}.
 #'
-#' @return list of covariance class matries by group
+#' @return list of matries with class \code{covariance} by group. These matrices
+#'    may be covariance or precision matrices, depending on the function
+#'    supplied to the \code{covEst} argument.
 #'
 #' @details This function has the capability to calculate total and group-level
-#'    covariance matrices estimated from the given data. Specify group membership
-#'    with the \code{group = "COLNAME"} syntax. Additionally, this function
-#'    returns objects with an additional class: when this function returns group
-#'    -level lists of matrices, each covariance matrix with have the \code{R}
-#'    class \code{matrix} \emph{and} \code{covariance}; likewise, total covariance
-#'    matrices are also returned with the classes \code{matrix} and
-#'    \code{covariance}. Moreover, these matrices have an additional named
-#'    attribute: \code{df}, for \emph{degrees of freedom}. The computational
-#'    functionality of the \code{covariance} class will be explored in future
-#'    updates.
+#'    covariance and precision matrices estimated from the given data. Specify
+#'    group membership with the \code{group = "COLNAME"} syntax. Additionally,
+#'    this function returns objects with an additional class: when this function
+#'    returns group-level lists of matrices, each covariance or precision matrix
+#'    will have the \code{R} classes \code{matrix} \emph{and} \code{covariance};
+#'    likewise, total covariance or precision matrices are also returned with
+#'    the classes \code{matrix} and \code{covariance}. Moreover, these matrices
+#'    have an additional named attribute: \code{df}, for \emph{degrees of freedom}.
+#'    The computational functionality of the \code{covariance} class will be
+#'    explored in future updates.
 #'
 #' @export
 #'
 #' @examples
 #' cov(iris[,1:4])
 #' cov(iris, group = "Species")
+#' cov(iris[,1:4], covEst = Haff_shrinkage)
 cov <- function(x, ..., covEst = stats::cov){
   UseMethod("cov")
 }
