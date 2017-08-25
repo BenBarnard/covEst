@@ -2,19 +2,29 @@
 % Please edit documentation in R/degreesFreedom.R
 \name{degreesFreedom}
 \alias{degreesFreedom}
-\title{Title}
+\title{Degrees of Freedom of a Covariance Matrix}
 \usage{
 degreesFreedom(x)
 }
 \arguments{
-\item{x}{covariance class matrix}
+\item{x}{a matrix with class \code{covariance}}
 }
 \value{
-Degrees of freedom of the covariance matrix
+The degrees of freedom of the covariance matrix, as a \code{numeric}
+   object
 }
 \description{
-Title
+Degrees of Freedom of a Covariance Matrix
+}
+\details{
+This function uses the \code{f_eval} function from the \code{lazyeval}
+   package to return the degrees of freedom stored within the \code{df}
+   attribute of a \code{matrix} object having the additional class
+   \code{covariance}. This evaluation is necessary because the \code{df}
+   attribute of a matrix with class \code{covariance} is stored as a
+   \code{formula} object.
 }
 \examples{
 degreesFreedom(cov(iris[,1:4]))
+lapply(cov(iris, group = "Species"), degreesFreedom)
 }
