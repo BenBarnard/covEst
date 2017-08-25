@@ -9,13 +9,21 @@ Haff_shrinkage(x, ...)
 \arguments{
 \item{x}{data matrix}
 
-\item{...}{other options}
+\item{...}{other options (currently unused)}
 }
 \value{
 Haff shrinkage precision estimator
 }
 \description{
 Haff Shrinkage Precision Estimator
+}
+\details{
+Given a matrix of observations, this function will calculate the
+   Haff Shrinkage Estimator of the sample precision matrix, as discussed in
+   \href{https://projecteuclid.org/euclid.aos/1176344845}{Haff (1979)}.
+   Because this estimator relies on the existence of the sample precision
+   matrix (and relatedly, a strictly positive covariance determinant), this
+   estimator is ill-suited for high-dimensional cases (\eqn{N < p}).
 }
 \examples{
 Haff_shrinkage(as.matrix(iris[-5]))
