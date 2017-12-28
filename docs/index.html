@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estimators for Covariance Matrices • covEst</title>
+<title>Estimators for Covariance Matrices • covEstR</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -58,48 +58,128 @@
     
     
 <div class="contents">
-<div id="covest" class="section level1">
+<div id="covestr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#covest" class="anchor"> </a>covEst</h1></div>
+<a href="#covestr" class="anchor"></a>covEstR</h1></div>
 
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
-<a href="#overview" class="anchor"> </a>Overview</h2>
-<p>covEst is a covariance estimation suite. I creating other packages we found it useful to separate out our covariance estimation functions and maintain them somewhere else. This package works well with slidR and EqualCov.</p>
-<p>In developing covEst we found it useful to have it play nice with the “tidyverse.” At this point we have not thought of all the uses and combinations with these packages so if you think of something not currently implemented please file a minimal reproducible example on github.</p>
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p><code>covEstR</code> is a covariance estimation suite. In creating other packages we found it useful to separate out our covariance estimation functions and maintain them somewhere else. This package works well with <code>hldr</code> and <code>covTestR</code>.</p>
+<p>In developing <code>covEstR</code> we found it useful to have it play nice with the <code>tidyverse</code> suite of packages. At this point we have not thought of all the uses and combinations with these packages, so if you think of something not currently implemented please file a minimal reproducible example on GitHub.</p>
+<p>Currently, we have written the Haff shrinkage estimator <a href="https://projecteuclid.org/euclid.aos/1176344845">1979</a>, but we are open to adding other covariance and precision matrix estimating functions. Note that our <code><a href="reference/cov.html">cov()</a></code> function can return either covariance or precision matrices, depending on the function supplied to the <code>covEstR</code> argument. Please file an enhancement request on GitHub, and please include the following details in the request:</p>
+<ul>
+<li>Link to a published paper (or even a white paper) wherein the estimator is defined in simplest terms (matrix notation preferred)</li>
+<li>A quick example of how the estimator is useful (we will include this information in the function <code>help</code> file(s))</li>
+</ul>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"> </a>Installation</h2>
-<p>You can install the latest development version from github with</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="kw">packageVersion</span>(<span class="st">"devtools"</span>) &lt;<span class="st"> </span><span class="fl">1.6</span>) {
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the latest development version from GitHub with</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="kw">packageVersion</span>(<span class="st">"devtools"</span>) <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.6</span>) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 }
-devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/covEst"</span>)</code></pre></div>
-<pre><code>## Skipping install of 'covEst' from a github remote, the SHA1 (87c78e7c) has not changed since last install.
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"BenBarnard/covEstR"</span>)</code></pre></div>
+<pre><code>## Skipping install of 'covEst' from a github remote, the SHA1 (459949c9) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
-<p>If you encounter a clear bug, please file a minimal reproducible example on github.</p>
+<p>If you encounter a clear bug, please file a minimal reproducible example on GitHub.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"> </a>Example</h2>
+<a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(covEst)
-
-iris %&gt;%<span class="st"> </span><span class="kw">select</span>(-Species) %&gt;%<span class="st"> </span>as.matrix %&gt;%<span class="st"> </span>Haff_shrinkage</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>## ── Attaching packages ───────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 2.2.1     ✔ purrr   0.2.4
+## ✔ tibble  1.3.4     ✔ dplyr   0.7.4
+## ✔ tidyr   0.7.2     ✔ stringr 1.2.0
+## ✔ readr   1.1.1     ✔ forcats 0.2.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(covEstR)</code></pre></div>
+<pre><code>## 
+## Attaching package: 'covEstR'</code></pre>
+<pre><code>## The following object is masked from 'package:stats':
+## 
+##     cov</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Total Precision</span>
+iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Species) <span class="op">%&gt;%</span><span class="st"> </span>as.matrix <span class="op">%&gt;%</span><span class="st"> </span>Haff_shrinkage</code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1462.2325   -950.2355   -1035.3471    812.4760
 ## Sepal.Width     -950.2355   1567.5041     917.3115   -873.4804
 ## Petal.Length   -1035.3471    917.3115    1422.1717  -2054.3881
 ## Petal.Width      812.4760   -873.4804   -2054.3881   3922.1784</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group Precision matrix estimates using our cov() function with the unbiased</span>
+<span class="co">#   estimator</span>
+<span class="kw"><a href="reference/cov.html">cov</a></span>(iris, <span class="dt">group =</span> <span class="st">"Species"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lapply</span>(solve)</code></pre></div>
+<pre><code>## $setosa
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length    18.943439  -12.404826    -4.500207   -4.776127
+## Sepal.Width    -12.404826   15.570540     1.111079   -2.104098
+## Petal.Length    -4.500207    1.111079    38.776204  -17.935035
+## Petal.Width     -4.776127   -2.104098   -17.935035  106.045906
+## 
+## $versicolor
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length     9.502764   -3.676217    -8.631712    6.454503
+## Sepal.Width     -3.676217   19.710966     2.116022  -19.480325
+## Petal.Length    -8.631712    2.116022    19.803758  -26.937227
+## Petal.Width      6.454503  -19.480325   -26.937227   87.244794
+## 
+## $virginica
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length    10.533867   -3.479726    -9.960146    1.788152
+## Sepal.Width     -3.479726   15.875442     1.102689   -8.472851
+## Petal.Length    -9.960146    1.102689    13.405821   -2.890918
+## Petal.Width      1.788152   -8.472851    -2.890918   19.314050</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group Precision matrix estimates using our cov() function with the Haff</span>
+<span class="co">#   Shrinkage Estimator</span>
+<span class="kw"><a href="reference/cov.html">cov</a></span>(iris, <span class="dt">group =</span> <span class="st">"Species"</span>, <span class="dt">covEst =</span> Haff_shrinkage)</code></pre></div>
+<pre><code>## $setosa
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length     818.7914  -506.82866   -183.86663  -195.14003
+## Sepal.Width     -506.8287   680.98361     45.39578   -85.96792
+## Petal.Length    -183.8666    45.39578   1629.10617  -732.77850
+## Petal.Width     -195.1400   -85.96792   -732.77850  4377.56974
+## attr(,"df")
+## ~49
+## &lt;environment: 0x7fd9a5e01d18&gt;
+## attr(,"class")
+## [1] "covariance" "matrix"    
+## 
+## $versicolor
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length     410.7266  -150.64027   -353.70152    264.4861
+## Sepal.Width     -150.6403   829.02794     86.70821   -798.2449
+## Petal.Length    -353.7015    86.70821    832.83025  -1103.8063
+## Petal.Width      264.4861  -798.24494  -1103.80630   3596.3605
+## attr(,"df")
+## ~49
+## &lt;environment: 0x7fd9a5e01d18&gt;
+## attr(,"class")
+## [1] "covariance" "matrix"    
+## 
+## $virginica
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length    446.07210  -142.22787   -407.10395    73.08767
+## Sepal.Width    -142.22787   664.39987     45.07052  -346.31329
+## Petal.Length   -407.10395    45.07052    563.45830  -118.16135
+## Petal.Width      73.08767  -346.31329   -118.16135   804.94710
+## attr(,"df")
+## ~49
+## &lt;environment: 0x7fd9a5e01d18&gt;
+## attr(,"class")
+## [1] "covariance" "matrix"</code></pre>
 </div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>License</h2>
+    <h2 class="hasAnchor">
+<a href="#sidebar" class="anchor"></a>License</h2>
 <p><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
@@ -108,15 +188,14 @@ iris %&gt;%<span class="st"> </span><span class="kw">select</span>(-Species) %&g
 <li>Gabriel Odom <br><small class="roles"> Author </small> </li>
 <li>Dean Young <br><small class="roles"> Author </small> </li>
 </ul>
-<html><body>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=covEst"><img src="http://www.r-pkg.org/badges/version/covEst" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://travis-ci.org/BenBarnard/covEst"><img src="https://travis-ci.org/BenBarnard/covEst.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/BenBarnard/covEst"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/covEst?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://codecov.io/github/BenBarnard/covEst?branch=master"><img src="https://img.shields.io/codecov/c/github/BenBarnard/covEst/master.svg" alt="Coverage Status"></a></li>
+<li><a href="https://cran.r-project.org/package=covEstR"><img src="http://www.r-pkg.org/badges/version/covEstR" alt="CRAN_Status_Badge"></a></li>
+<li><a href="http://cranlogs.r-pkg.org/badges/grand-total/covEstR"><img src="http://cranlogs.r-pkg.org/badges/grand-total/covEstR" alt="CRAN_Downloads_Badge"></a></li>
+<li><a href="https://codecov.io/gh/BenBarnard/covEstR"><img src="https://codecov.io/gh/BenBarnard/covEstR/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://travis-ci.org/BenBarnard/covEstR"><img src="https://travis-ci.org/BenBarnard/covEstR.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/BenBarnard/covEstR"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/covEstR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 </ul>
-</body></html>
 </div>
 
 </div>

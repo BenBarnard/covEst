@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pooled Covariance — pooled_cov • covEst</title>
+<title>Pooled Covariance Estimator — pooled_cov • covEstR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,14 +23,17 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -74,28 +77,45 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pooled Covariance</h1>
+    <h1>Pooled Covariance Estimator</h1>
     </div>
 
     
-    <p>Pooled Covariance</p>
+    <p>Pooled Covariance Estimator</p>
     
 
-    <pre><span class='fu'>pooled_cov</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>covEst</span> <span class='kw'>=</span> <span class='kw'>stats</span><span class='kw'>::</span><span class='no'>cov</span>)</pre>
+    <pre class="usage"><span class='fu'>pooled_cov</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>covEst</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/stats/topics/cor'>cov</a></span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>data</dd>
-      <dt>...</dt>
-      <dd>other options passed to estimation method</dd>
-      <dt>covEst</dt>
-      <dd>covariance matrix estimation method</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>data as a <code>data.frame</code>, <code>grouped_df</code>, or <code>resample</code>
+objects</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other options passed to estimation method</p></td>
+    </tr>
+    <tr>
+      <th>covEst</th>
+      <td><p>covariance or precision matrix estimation method</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>pooled covariance class matrix</p>
+    <p>The pooled covariance or precision matrix with class <code>covariance</code>
+   and total degrees of freedom attribute <code>df</code> as a formula.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function returns the weighted average of a collection of group-
+   or class-specific covariance or precision matrices. The weights are
+   proportional to the degrees of freedom of each matrix.  This matrix has
+   the total degrees of freedom stored within the <code>df</code> attribute as a
+   formula for simple evaluation by the <code><a href='degreesFreedom.html'>degreesFreedom</a></code> function</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -104,11 +124,11 @@
 #&gt; Sepal.Width    0.09272109  0.11538776   0.05524354  0.03271020
 #&gt; Petal.Length   0.16751429  0.05524354   0.18518776  0.04266531
 #&gt; Petal.Width    0.03840136  0.03271020   0.04266531  0.04188163
-#&gt; attr(,&quot;df&quot;)
+#&gt; attr(,"df")
 #&gt; ~49 + 49 + 49
-#&gt; &lt;environment: 0x110716348&gt;
-#&gt; attr(,&quot;class&quot;)
-#&gt; [1] &quot;covariance&quot; &quot;matrix&quot;    </div></pre>
+#&gt; &lt;environment: 0x10c9ba230&gt;
+#&gt; attr(,"class")
+#&gt; [1] "covariance" "matrix"    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -116,6 +136,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

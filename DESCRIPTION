@@ -1,4 +1,4 @@
-Package: covEst
+Package: covEstR
 Title: Estimators for Covariance Matrices
 Version: 0.0.0.9000
 Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c("aut", "cre")),

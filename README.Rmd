@@ -1,17 +1,18 @@
-# covEst
+# covEstR
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/covEst)](https://cran.r-project.org/package=covEst)
-[![Travis-CI Build Status](https://travis-ci.org/BenBarnard/covEst.svg?branch=master)](https://travis-ci.org/BenBarnard/covEst)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/BenBarnard/covEst?branch=master&svg=true)](https://ci.appveyor.com/project/BenBarnard/covEst)
-[![Coverage Status](https://img.shields.io/codecov/c/github/BenBarnard/covEst/master.svg)](https://codecov.io/github/BenBarnard/covEst?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/covEstR)](https://cran.r-project.org/package=covEstR)
+[![CRAN_Downloads_Badge](http://cranlogs.r-pkg.org/badges/grand-total/covEstR)](http://cranlogs.r-pkg.org/badges/grand-total/covEstR)
+[![codecov](https://codecov.io/gh/BenBarnard/covEstR/branch/master/graph/badge.svg)](https://codecov.io/gh/BenBarnard/covEstR)
+[![Travis-CI Build Status](https://travis-ci.org/BenBarnard/covEstR.svg?branch=master)](https://travis-ci.org/BenBarnard/covEstR)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/BenBarnard/covEstR?branch=master&svg=true)](https://ci.appveyor.com/project/BenBarnard/covEstR)
 
 ## Overview
 
-`covEst` is a covariance estimation suite. In creating other packages we found it useful to separate out our covariance estimation functions and maintain them somewhere else. This package works well with `slidR` and `EqualCov`.
+`covEstR` is a covariance estimation suite. In creating other packages we found it useful to separate out our covariance estimation functions and maintain them somewhere else. This package works well with `hldr` and `covTestR`.
 
-In developing `covEst` we found it useful to have it play nice with the `tidyverse` suite of packages. At this point we have not thought of all the uses and combinations with these packages, so if you think of something not currently implemented please file a minimal reproducible example on GitHub.
+In developing `covEstR` we found it useful to have it play nice with the `tidyverse` suite of packages. At this point we have not thought of all the uses and combinations with these packages, so if you think of something not currently implemented please file a minimal reproducible example on GitHub.
 
-Currently, we have written the Haff shrinkage estimator [1979](https://projecteuclid.org/euclid.aos/1176344845), but we are open to adding other covariance and precision matrix estimating functions. Note that our `cov()` function can return either covariance or precision matrices, depending on the function supplied to the `covEst` argument. Please file an enhancement request on GitHub, and please include the following details in the request:
+Currently, we have written the Haff shrinkage estimator [1979](https://projecteuclid.org/euclid.aos/1176344845), but we are open to adding other covariance and precision matrix estimating functions. Note that our `cov()` function can return either covariance or precision matrices, depending on the function supplied to the `covEstR` argument. Please file an enhancement request on GitHub, and please include the following details in the request:
 
 - Link to a published paper (or even a white paper) wherein the estimator is defined in simplest terms (matrix notation preferred)
 - A quick example of how the estimator is useful (we will include this information in the function `help` file(s))
@@ -24,7 +25,7 @@ You can install the latest development version from GitHub with
 if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
-devtools::install_github("benbarnard/covEst")
+devtools::install_github("BenBarnard/covEstR")
 ```
 
 If you encounter a clear bug, please file a minimal reproducible example on GitHub.
@@ -35,7 +36,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(tidyverse)
-library(covEst)
+library(covEstR)
 
 # Total Precision
 iris %>% select(-Species) %>% as.matrix %>% Haff_shrinkage

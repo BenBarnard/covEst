@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Covariance Matrix — cov • covEst</title>
+<title>Covariance Matrix Calculation for (Potentially Grouped) Data — cov • covEstR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,14 +23,17 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -74,28 +77,54 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Covariance Matrix</h1>
+    <h1>Covariance Matrix Calculation for (Potentially Grouped) Data</h1>
     </div>
 
     
-    <p>Covariance Matrix</p>
+    <p>Covariance Matrix Calculation for (Potentially Grouped) Data</p>
     
 
-    <pre><span class='fu'>cov</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>covEst</span> <span class='kw'>=</span> <span class='kw'>stats</span><span class='kw'>::</span><span class='no'>cov</span>)</pre>
+    <pre class="usage"><span class='fu'>cov</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>covEst</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/stats/topics/cor'>cov</a></span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>data</dd>
-      <dt>...</dt>
-      <dd>other options passed to covarince estimation method</dd>
-      <dt>covEst</dt>
-      <dd>covariance estimation method</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>data you would like the covariance matrix of. The parameter <code>x</code>
+can be a <code>data.frame</code>, <code>grouped_df</code>, <code>resample</code>, or
+<code>matrix</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other options passed to covarince estimation method</p></td>
+    </tr>
+    <tr>
+      <th>covEst</th>
+      <td><p>covariance or precision matrix estimation method, as a function.
+Defaults to <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor'>stats::cov</a></code>.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list of covariance class matries</p>
+    <p>list of matries with class <code>covariance</code> by group. These matrices
+   may be covariance or precision matrices, depending on the function
+   supplied to the <code>covEst</code> argument.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function has the capability to calculate total and group-level
+   covariance and precision matrices estimated from the given data. Specify
+   group membership with the <code>group = "COLNAME"</code> syntax. Additionally,
+   this function returns objects with an additional class: when this function
+   returns group-level lists of matrices, each covariance or precision matrix
+   will have the <code>R</code> classes <code>matrix</code> <em>and</em> <code>covariance</code>;
+   likewise, total covariance or precision matrices are also returned with
+   the classes <code>matrix</code> and <code>covariance</code>. Moreover, these matrices
+   have an additional named attribute: <code>df</code>, for <em>degrees of freedom</em>.
+   The computational functionality of the <code>covariance</code> class will be
+   explored in future updates.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -104,11 +133,55 @@
 #&gt; Sepal.Width    -0.0424340   0.1899794   -0.3296564  -0.1216394
 #&gt; Petal.Length    1.2743154  -0.3296564    3.1162779   1.2956094
 #&gt; Petal.Width     0.5162707  -0.1216394    1.2956094   0.5810063
-#&gt; attr(,&quot;df&quot;)
+#&gt; attr(,"df")
 #&gt; ~149
-#&gt; &lt;environment: namespace:covEst&gt;
-#&gt; attr(,&quot;class&quot;)
-#&gt; [1] &quot;covariance&quot; &quot;matrix&quot;    </div></pre>
+#&gt; &lt;environment: namespace:covEstR&gt;
+#&gt; attr(,"class")
+#&gt; [1] "covariance" "matrix"    </div><div class='input'><span class='fu'>cov</span>(<span class='no'>iris</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"Species"</span>)</div><div class='output co'>#&gt; $setosa
+#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; Sepal.Length   0.12424898 0.099216327  0.016355102 0.010330612
+#&gt; Sepal.Width    0.09921633 0.143689796  0.011697959 0.009297959
+#&gt; Petal.Length   0.01635510 0.011697959  0.030159184 0.006069388
+#&gt; Petal.Width    0.01033061 0.009297959  0.006069388 0.011106122
+#&gt; attr(,"df")
+#&gt; ~49
+#&gt; &lt;environment: 0x10caf14d0&gt;
+#&gt; attr(,"class")
+#&gt; [1] "covariance" "matrix"    
+#&gt; 
+#&gt; $versicolor
+#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; Sepal.Length   0.26643265  0.08518367   0.18289796  0.05577959
+#&gt; Sepal.Width    0.08518367  0.09846939   0.08265306  0.04120408
+#&gt; Petal.Length   0.18289796  0.08265306   0.22081633  0.07310204
+#&gt; Petal.Width    0.05577959  0.04120408   0.07310204  0.03910612
+#&gt; attr(,"df")
+#&gt; ~49
+#&gt; &lt;environment: 0x10caf14d0&gt;
+#&gt; attr(,"class")
+#&gt; [1] "covariance" "matrix"    
+#&gt; 
+#&gt; $virginica
+#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; Sepal.Length   0.40434286  0.09376327   0.30328980  0.04909388
+#&gt; Sepal.Width    0.09376327  0.10400408   0.07137959  0.04762857
+#&gt; Petal.Length   0.30328980  0.07137959   0.30458776  0.04882449
+#&gt; Petal.Width    0.04909388  0.04762857   0.04882449  0.07543265
+#&gt; attr(,"df")
+#&gt; ~49
+#&gt; &lt;environment: 0x10caf14d0&gt;
+#&gt; attr(,"class")
+#&gt; [1] "covariance" "matrix"    
+#&gt; </div><div class='input'><span class='fu'>cov</span>(<span class='no'>iris</span>[,<span class='fl'>1</span>:<span class='fl'>4</span>], <span class='kw'>covEst</span> <span class='kw'>=</span> <span class='no'>Haff_shrinkage</span>)</div><div class='output co'>#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; Sepal.Length    1462.2325   -950.2355   -1035.3471    812.4760
+#&gt; Sepal.Width     -950.2355   1567.5041     917.3115   -873.4804
+#&gt; Petal.Length   -1035.3471    917.3115    1422.1717  -2054.3881
+#&gt; Petal.Width      812.4760   -873.4804   -2054.3881   3922.1784
+#&gt; attr(,"df")
+#&gt; ~149
+#&gt; &lt;environment: namespace:covEstR&gt;
+#&gt; attr(,"class")
+#&gt; [1] "covariance" "matrix"    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -116,6 +189,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
