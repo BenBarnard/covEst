@@ -1,4 +1,4 @@
 library(testthat)
-library(covEst)
+library(covEstR)
 
-test_check("covEst")
+test_check("covEstR")

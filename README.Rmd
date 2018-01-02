@@ -4,7 +4,7 @@
 [![CRAN_Downloads_Badge](http://cranlogs.r-pkg.org/badges/grand-total/covEstR)](http://cranlogs.r-pkg.org/badges/grand-total/covEstR)
 [![codecov](https://codecov.io/gh/BenBarnard/covEstR/branch/master/graph/badge.svg)](https://codecov.io/gh/BenBarnard/covEstR)
 [![Travis-CI Build Status](https://travis-ci.org/BenBarnard/covEstR.svg?branch=master)](https://travis-ci.org/BenBarnard/covEstR)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/BenBarnard/covEstR?branch=master&svg=true)](https://ci.appveyor.com/project/BenBarnard/covEstR)
+
 
 ## Overview
 
